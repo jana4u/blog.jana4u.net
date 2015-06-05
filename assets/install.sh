@@ -1,24 +1,32 @@
 #!/bin/bash
 
+# sdilena slozka se jmenuje ruby, ale lze predat jine jmeno z prikazove radky: ./install.sh jmeno_slozky
+if [ -z "$1" ]
+  then
+    SHARED_FOLDER="ruby"
+  else
+    SHARED_FOLDER=$1
+fi
+
 # vytvoreni prazdne slozky pro mountovani sdilene slozky
 cd ~
-mkdir ruby
+mkdir ${SHARED_FOLDER}
 
 # vytvoreni skriptu pro rucni mountovani
 cat > mount_ruby.sh << EOF
 #!/bin/bash
-sudo mount -t vboxsf ruby ~/ruby
+sudo mount -t vboxsf ${SHARED_FOLDER} ~/${SHARED_FOLDER}
 EOF
 chmod +x mount_ruby.sh
 
 # nastaveni automatickeho mountu sdilene slozky pri startu
-sudo su -c "printf 'ruby /home/jana/ruby vboxsf rw,uid=1000,gid=1000,auto,exec 0 0\n' >> /etc/fstab"
+sudo su -c "printf '${SHARED_FOLDER} ${HOME}/${SHARED_FOLDER} vboxsf rw,uid=1000,gid=1000,auto,exec 0 0\n' >> /etc/fstab"
 sudo su -c "printf 'vboxsf' >> /etc/modules"
 sudo su -c "printf 'vboxsf' >> /etc/initramfs-tools/modules"
 sudo update-initramfs -u
 
 # okamzite rucni namountovani (bez restartu stroje)
-sudo mount ~/ruby
+sudo mount ~/${SHARED_FOLDER}
 
 # aktualizace balicku
 sudo apt-get -qq update
@@ -75,13 +83,13 @@ sudo apt-get -qq install mysql-workbench
 
 # instalace RubyMine 6.0.3
 sudo apt-get -qq install openjdk-7-jre
-if [ -e ~/ruby/RubyMine-6.0.3.tar.gz ]
+if [ -e ~/${SHARED_FOLDER}/RubyMine-6.0.3.tar.gz ]
   then
     echo "RubyMine 6.0.3 was already downloaded."
   else
-    wget -P ~/ruby http://download.jetbrains.com/ruby/RubyMine-6.0.3.tar.gz
+    wget -P ~/${SHARED_FOLDER} http://download.jetbrains.com/ruby/RubyMine-6.0.3.tar.gz
 fi
-tar -xzf ~/ruby/RubyMine-6.0.3.tar.gz -C ~
+tar -xzf ~/${SHARED_FOLDER}/RubyMine-6.0.3.tar.gz -C ~
 
 # zmena nastaveni systemu pro hladky provoz RubyMine
 sudo su -c "printf 'fs.inotify.max_user_watches = 524288\n' >> /etc/sysctl.conf"
@@ -113,3 +121,6 @@ wget -qO - https://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-k
 sudo add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main"
 sudo apt-get -qq update
 sudo apt-get -qq install elasticsearch
+
+# instalace Redis
+sudo apt-get -qq install redis-server

@@ -167,12 +167,21 @@ Můžete pro pojmenování použít třeba aktuální datum.
 
 ### Použití kompletního instalačního skriptu
 
-Pro využití tohoto řešení je třeba mít zapnuté sdílení schránky mezi systémy.
+Je možné si přímo přes `Terminal` stáhnout [instalační skript](/assets/install.sh):
 
-V Ubuntu spustíme `Text Editor`, ze schránky vložíme obsah [skriptu](/assets/install.sh) a uložíme do domovské složky - např. jako `install.sh`.
-
-Spustíme `Terminal` a tam zadáme:
 {% highlight sh %}
+wget -P ~ {{ site.url }}/assets/install.sh
+{% endhighlight %}
+
+Alternativně je možné si [instalační skript](/assets/install.sh) stáhnout,
+jeho obsah zkopírovat přes schránku do programu `Text Editor` v Ubuntu
+a uložit do domovské složky - např. jako `install.sh`.
+(Pro využití tohoto řešení je třeba mít zapnuté sdílení schránky mezi systémy.)
+
+Skript pak spustíme zadáním:
+
+{% highlight sh %}
+cd ~
 chmod +x install.sh
 ./install.sh
 {% endhighlight %}
@@ -218,7 +227,7 @@ A pak jej spustit:
 Je třeba upravit nastavení systému:
 
 {% highlight sh %}
-sudo su -c "printf 'ruby /home/jana/ruby vboxsf rw,uid=1000,gid=1000,auto,exec 0 0\n' >> /etc/fstab"
+sudo su -c "printf 'ruby ${HOME}/ruby vboxsf rw,uid=1000,gid=1000,auto,exec 0 0\n' >> /etc/fstab"
 sudo su -c "printf 'vboxsf' >> /etc/modules"
 sudo su -c "printf 'vboxsf' >> /etc/initramfs-tools/modules"
 sudo update-initramfs -u
@@ -464,6 +473,12 @@ sudo apt-get -qq update
 sudo apt-get -qq install elasticsearch
 {% endhighlight %}
 
+#### Instalace [Redis](http://redis.io/)
+
+{% highlight sh %}
+sudo apt-get -qq install redis-server
+{% endhighlight %}
+
 ### Přidání SSH klíčů
 
 Stačí zkopírovat soubory `id_rsa.pub` a `id_rsa` přes sdílenou složku do složky `~/.ssh` v Ubuntu.
@@ -487,9 +502,21 @@ sudo update-initramfs -u
 
 Bez toho nefunguje automatické připojení sdílených složek při startu, normální rozlišení ani sdílená schránka.
 
----------------------------------------
+## Použité verze software
 
 V době sepsání byly aktuální tyto verze:
 
 * VirtualBox 4.3.28-100309
 * Ubuntu 14.04.2 LTS 64-bit
+
+## Poděkování
+
+Děkuji kolegům z [KRAXNET](http://www.kraxnet.cz/)u, kteří mi pomohli skripty vylepšit a doladit.
+
+## Aktualizace
+
+* 5.6.2015
+  * přidána instalace Redisu
+  * využití HOME pro získání cesty do domovské složky
+  * konfigurovatelné jméno sdílené složky v install.sh skriptu
+  * přidáno poděkování
