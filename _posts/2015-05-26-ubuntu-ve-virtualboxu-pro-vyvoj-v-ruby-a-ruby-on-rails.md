@@ -481,7 +481,14 @@ sudo apt-get -qq install redis-server
 
 ### Přidání SSH klíčů
 
-Stačí zkopírovat soubory `id_rsa.pub` a `id_rsa` přes sdílenou složku do složky `~/.ssh` v Ubuntu.
+Stačí zkopírovat soubory `id_rsa.pub` a `id_rsa` přes sdílenou složku do složky `~/.ssh` v Ubuntu, pokud je chcete mít přímo ve virtuálním stroji.
+
+Druhou možností je dát si je do složky ve sdílené složce a vytvořit si na ni symbolický link:
+
+{% highlight sh %}
+cd ~
+ln -s ~/ruby/.ssh/ .ssh
+{% endhighlight %}
 
 ## Provoz a údržba Ubuntu
 
@@ -520,3 +527,6 @@ Děkuji kolegům z [KRAXNET](http://www.kraxnet.cz/)u, kteří mi pomohli skript
   * využití HOME pro získání cesty do domovské složky
   * konfigurovatelné jméno sdílené složky v install.sh skriptu
   * přidáno poděkování
+
+* 27.7.2015
+  * přidána tvorba symbolických odkazů na .ssh a .RubyMine60

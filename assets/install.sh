@@ -28,6 +28,12 @@ sudo update-initramfs -u
 # okamzite rucni namountovani (bez restartu stroje)
 sudo mount ~/${SHARED_FOLDER}
 
+# vytvoreni symlinku na konfiguraci SSH, pokud je ve sdilene slozce
+if [ -e ~/${SHARED_FOLDER}/.ssh ]
+  then
+    ln -s ~/${SHARED_FOLDER}/.ssh/ .ssh
+fi
+
 # aktualizace balicku
 sudo apt-get -qq update
 
@@ -94,6 +100,12 @@ tar -xzf ~/${SHARED_FOLDER}/RubyMine-6.0.3.tar.gz -C ~
 # zmena nastaveni systemu pro hladky provoz RubyMine
 sudo su -c "printf 'fs.inotify.max_user_watches = 524288\n' >> /etc/sysctl.conf"
 sudo sysctl -p
+
+# vytvoreni symlinku na konfiguraci RubyMine, pokud je ve sdilene slozce
+if [ -e ~/${SHARED_FOLDER}/.RubyMine60 ]
+  then
+    ln -s ~/${SHARED_FOLDER}/.RubyMine60/ .RubyMine60
+fi
 
 # instalace gemu capybara-webkit
 sudo apt-get -qq install qt5-default libqt5webkit5-dev
