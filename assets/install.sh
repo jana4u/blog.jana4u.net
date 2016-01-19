@@ -136,3 +136,7 @@ sudo apt-get -qq install elasticsearch
 
 # instalace Redis
 sudo apt-get -qq install redis-server
+
+# instalace Node.js
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get -qq install nodejs

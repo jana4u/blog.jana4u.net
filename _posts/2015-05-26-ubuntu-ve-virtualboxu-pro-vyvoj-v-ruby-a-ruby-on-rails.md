@@ -479,6 +479,15 @@ sudo apt-get -qq install elasticsearch
 sudo apt-get -qq install redis-server
 {% endhighlight %}
 
+#### Instalace [Node.js](https://nodejs.org/)
+
+Zdroj: [Installing Node.js via package manager | Node.js](https://nodejs.org/en/download/package-manager/)
+
+{% highlight sh %}
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get -qq install nodejs
+{% endhighlight %}
+
 ### Přidání SSH klíčů
 
 Stačí zkopírovat soubory `id_rsa.pub` a `id_rsa` přes sdílenou složku do složky `~/.ssh` v Ubuntu, pokud je chcete mít přímo ve virtuálním stroji.
@@ -530,3 +539,6 @@ Děkuji kolegům z [KRAXNET](http://www.kraxnet.cz/)u, kteří mi pomohli skript
 
 * 27.7.2015
   * přidána tvorba symbolických odkazů na .ssh a .RubyMine60
+
+* 19.1.2016
+  * přidána instalace Node.js
