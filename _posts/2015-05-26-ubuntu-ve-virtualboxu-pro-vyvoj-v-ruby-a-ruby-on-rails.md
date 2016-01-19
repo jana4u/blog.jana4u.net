@@ -481,7 +481,7 @@ sudo apt-get -qq install redis-server
 
 #### Instalace [Node.js](https://nodejs.org/)
 
-Zdroj: [Installing Node.js via package manager | Node.js](https://nodejs.org/en/download/package-manager/)
+Zdroj: [Installing Node.js via package manager](https://nodejs.org/en/download/package-manager/)
 
 {% highlight sh %}
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
