@@ -389,19 +389,19 @@ sudo apt-get -qq install mysql-workbench
 
 RubyMine je IDE pro vývoj v Ruby a Ruby on Rails.
 
-Já mám aktuálně licenci jen pro verzi 6.0.3, pokud tedy chcete používat novější, je třeba číslo verze změnit.
+Já mám aktuálně licenci pro verzi 8.0.3, pokud tedy chcete používat jinou, je třeba číslo verze změnit.
 
 Stáhnout si Linuxovou verzi lze pomocí příkazu:
 
 {% highlight sh %}
-wget -P ~/ruby http://download.jetbrains.com/ruby/RubyMine-6.0.3.tar.gz
+wget -P ~/ruby https://download.jetbrains.com/ruby/RubyMine-8.0.3.tar.gz
 {% endhighlight %}
 
 Následující skript očekává již stažený .tar.gz RubyMine ve složce `~/ruby`:
 
 {% highlight sh %}
 sudo apt-get -qq install openjdk-7-jre
-tar -xzf ~/ruby/RubyMine-6.0.3.tar.gz -C ~
+tar -xzf ~/ruby/RubyMine-8.0.3.tar.gz -C ~
 {% endhighlight %}
 
 Upravíme ještě konfiguraci systému, aby RubyMine fungovalo dobře:
@@ -414,7 +414,7 @@ sudo sysctl -p
 RubyMine spustíme např. takto:
 
 {% highlight sh %}
-cd ~/RubyMine-6.0.3/bin
+cd ~/RubyMine-8.0.3/bin
 ./rubymine.sh
 {% endhighlight %}
 
@@ -542,3 +542,4 @@ Děkuji kolegům z [KRAXNET](http://www.kraxnet.cz/)u, kteří mi pomohli skript
 
 * 19.1.2016
   * přidána instalace Node.js
+  * aktualizace na RubyMine 8.0.3

@@ -87,24 +87,24 @@ gem install pg
 # instalace MySQL Workbench (GUI)
 sudo apt-get -qq install mysql-workbench
 
-# instalace RubyMine 6.0.3
+# instalace RubyMine 8.0.3
 sudo apt-get -qq install openjdk-7-jre
-if [ -e ~/${SHARED_FOLDER}/RubyMine-6.0.3.tar.gz ]
+if [ -e ~/${SHARED_FOLDER}/RubyMine-8.0.3.tar.gz ]
   then
-    echo "RubyMine 6.0.3 was already downloaded."
+    echo "RubyMine 8.0.3 was already downloaded."
   else
-    wget -P ~/${SHARED_FOLDER} http://download.jetbrains.com/ruby/RubyMine-6.0.3.tar.gz
+    wget -P ~/${SHARED_FOLDER} https://download.jetbrains.com/ruby/RubyMine-8.0.3.tar.gz
 fi
-tar -xzf ~/${SHARED_FOLDER}/RubyMine-6.0.3.tar.gz -C ~
+tar -xzf ~/${SHARED_FOLDER}/RubyMine-8.0.3.tar.gz -C ~
 
 # zmena nastaveni systemu pro hladky provoz RubyMine
 sudo su -c "printf 'fs.inotify.max_user_watches = 524288\n' >> /etc/sysctl.conf"
 sudo sysctl -p
 
 # vytvoreni symlinku na konfiguraci RubyMine, pokud je ve sdilene slozce
-if [ -e ~/${SHARED_FOLDER}/.RubyMine60 ]
+if [ -e ~/${SHARED_FOLDER}/.RubyMine80 ]
   then
-    ln -s ~/${SHARED_FOLDER}/.RubyMine60/ .RubyMine60
+    ln -s ~/${SHARED_FOLDER}/.RubyMine80/ .RubyMine80
 fi
 
 # instalace gemu capybara-webkit
