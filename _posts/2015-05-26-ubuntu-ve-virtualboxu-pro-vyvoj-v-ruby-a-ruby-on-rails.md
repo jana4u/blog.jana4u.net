@@ -492,7 +492,7 @@ sudo apt-get -qq install nodejs
 
 Stačí zkopírovat soubory `id_rsa.pub` a `id_rsa` přes sdílenou složku do složky `~/.ssh` v Ubuntu, pokud je chcete mít přímo ve virtuálním stroji.
 
-Druhou možností je dát si je do složky ve sdílené složce a vytvořit si na ni symbolický link:
+Druhou možností je dát si je do složky ve sdílené složce a vytvořit si na ni symbolický odkaz:
 
 {% highlight sh %}
 cd ~
